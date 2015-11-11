@@ -1,0 +1,13 @@
+{% load bootstrap3 %}
+<div class="pull-right" style="min-width: 60px;">
+{% if record.edit_url %}
+  <a href="{{ record.link_to }}" target="_blank" class="btn btn-xs btn-info" title="Edit Link">
+    <i class="fa fa-external-link"></i>
+  </a>
+{% endif %}
+{% for item in record.row_buttons %}
+  <a href="{{ item.url }}" class="btn btn-xs {{ item.css }}" title="{{ item.label }}">
+    TODO: Add Item icon
+  </a>
+{% endfor %}
+</div>
