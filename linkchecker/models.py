@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.core.urlresolvers import reverse_lazy
 from django.db import models
 from django.utils.translation import ugettext as _
 
@@ -22,6 +23,17 @@ class BrokenLink(models.Model):
     object_url = models.URLField(
         blank=True, null=True,
         verbose_name=_(u'Go to Object'))
+
+    def row_buttons(self):
+        buttons = [
+            {'url': reverse_lazy('linkchecker-delete', kwargs={
+                'pk': self.id}),
+             'css': 'btn-danger',
+             'icon': 'glyphicon glyphicon-remove',
+             'label': 'Delete Broken Link Entry',
+             }
+        ]
+        return buttons
 
     def __unicode__(self):
         return 'Broken link: %s' % self.url
