@@ -9,25 +9,28 @@ class BaseLinkChecker(object):
     fields = None
     excluded = []
 
-    link_to = None
+    object_url = None
 
-    def get_model(self):
+    def get_model(self, **kwargs):
         return self.model
 
-    def get_queryset(self):
+    def get_queryset(self, **kwargs):
         return self.queryset
 
-    def get_fields(self):
+    def get_fields(self, **kwargs):
         if self.fields:
             return self.fields
 
         return [f for f in self.model._meta.get_all_field_names() if type(self.model._meta.get_field(f)) in LINKCHECKER_FIELD_TYPES]
 
-    def get_excluded(self):
+    def get_excluded(self, **kwargs):
         return self.excluded
 
-    def get_link(self):
-        return self.link_to
+    def get_object_url(self, obj, field_name, **kwargs):
+        return self.object_url
+
+    def get_urls(self, obj, field_name, **kwargs):
+        return None
 
     class Meta:
         abstract = True

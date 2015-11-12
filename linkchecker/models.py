@@ -19,7 +19,7 @@ class BrokenLink(models.Model):
     status_code = models.PositiveSmallIntegerField(
         blank=True, null=True,
         verbose_name=_(u'Status code'))
-    link_to = models.URLField(
+    object_url = models.URLField(
         blank=True, null=True,
         verbose_name=_(u'Go to Object'))
 
